@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html ng-app="app" style="overflow-x: hidden;">
+<base href="/" />
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambassador Signup</title>
+    <link rel="stylesheet" href="bower_components/lumx/dist/lumx.css">
+
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" href="assets/css/user.css">
+
+    <!--Lumx requirements start-->
+    <!--link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700"-->
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/velocity/velocity.js"></script>
+    <script src="bower_components/moment/min/moment-with-locales.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/lumx/dist/lumx.js"></script>
+    <!--Lumx requirements end-->
+
+    <!-- Data -->
+    <script src="data/cities.js"></script>
+    <script src="data/industries.js"></script>
+
+    <!-- Controller -->
+    <script src="controllers/guest.js"></script>
+</head>
+
+<body ng-controller="bodyControl as vm">
+<header class="signupHeader">
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand navbar-link"></a>
+                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span
+                        class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
+                        class="icon-bar"></span><span class="icon-bar"></span></button>
+            </div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li role="presentation"><a href="/">About </a></li>
+                    <li class="active" role="presentation"><a href="/signup">Sign up</a></li>
+                    <li role="presentation"><a href="/contaxt">Contact the developers</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<h1 class="text-center bg-primary">Signup as an Ambassador</h1>
+<form>
+    <div class="p+" flex-container="row" flex-gutter="24" flex-column="16">
+        <div flex-item="4"></div>
+        <div flex-item="4">
+            <lx-text-field lx-label="Name" lx-allow-clear="true" lx-icon="account">
+                <input type="text" ng-model="vm.ambassador.name">
+            </lx-text-field>
+            <lx-text-field lx-label="Email address" lx-allow-clear="true" lx-icon="email">
+                <input type="email" ng-model="vm.ambassador.email">
+            </lx-text-field>
+            <lx-text-field lx-label="Current Company" lx-allow-clear="true" lx-icon="city">
+                <input type="text" ng-model="vm.ambassador.currentCompany">
+            </lx-text-field>
+            <lx-text-field lx-label="Job Title" lx-allow-clear="true" lx-icon="clipboard-account">
+                <input type="text" ng-model="vm.ambassador.jobTitle">
+            </lx-text-field>
+            <lx-text-field lx-label="LinkedIn URL" lx-allow-clear="true" lx-icon="linkedin-box">
+                <input type="text" ng-model="vm.ambassador.linkedInUrl">
+            </lx-text-field>
+            <lx-text-field lx-label="Facebook URL" lx-allow-clear="true" lx-icon="facebook-box">
+                <input type="text" ng-model="vm.ambassador.facebookUrl">
+            </lx-text-field>
+        </div>
+
+        <div flex-item="4">
+            <lx-select ng-model="vm.ambassador.nearestCity"
+                       lx-allow-clear="true"
+                       lx-choices="vm.cities"
+                       lx-display-filter="true"
+                       lx-label="Nearest City">
+                <lx-select-selected>
+                    {{ $selected }}
+                </lx-select-selected>
+                <lx-select-choices>
+                    {{ $choice }}
+                </lx-select-choices>
+            </lx-select>
+            <lx-select ng-model="vm.ambassador.industry"
+                       lx-allow-clear="true"
+                       lx-choices="vm.industries"
+                       lx-display-filter="true"
+                       lx-label="Industry">
+                <lx-select-selected>
+                    {{ $selected }}
+                </lx-select-selected>
+                <lx-select-choices>
+                    {{ $choice }}
+                </lx-select-choices>
+            </lx-select>
+            <lx-text-field lx-label="Years In Industry" lx-allow-clear="true" lx-icon="calendar-clock">
+                <input type="number" ng-model="vm.ambassador.yearsInIndustry">
+            </lx-text-field>
+        </div>
+    </div>
+
+    <div class="p+" flex-container="row" flex-gutter="24" flex-column="16">
+        <div flex-item="4"></div>
+        <lx-button
+                lx-type="raised"
+                ng-click="vm.test()">
+            Submit
+        </lx-button>
+    </div>
+</form>
+
+<footer>
+    <h5>PROPEL Portland 2016</h5></footer>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
