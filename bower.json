@@ -1,0 +1,21 @@
+{
+  "name": "MaineAmbassadorProgram",
+  "authors": [
+    "Ethan Standel",
+    "Sean Campbell"
+  ],
+  "description": "testapp",
+  "main": "index.html",
+  "keywords": [
+    "networking",
+    "web-app"
+  ],
+  "license": "MIT",
+  "homepage": "index.html",
+  "dependencies": {
+    "lumx": "^1.3.2"
+  },
+  "devDependencies": {
+    "lumx": "^1.3.5"
+  }
+}
