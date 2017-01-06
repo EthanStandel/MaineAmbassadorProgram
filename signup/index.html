@@ -22,25 +22,12 @@
     <!--Lumx requirements end-->
 
     <script src="controllers/signup.js"></script>
+    <script src="components/navHeader/navHeader.js"></script>
 </head>
 
 <body ng-controller="bodyControl as vm">
     <header class="signupHeader">
-        <nav class="navbar navbar-default">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand navbar-link"></a>
-                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                </div>
-                <div class="collapse navbar-collapse" id="navcol-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li role="presentation"><a href="/">About </a></li>
-                        <li class="active" role="presentation"><a>Sign up</a></li>
-                        <li role="presentation"><a href="/contact">Contact the developers</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <nav-header></nav-header>
     </header>
     <h1 class="text-center bg-primary">Sign Up Today!</h1>
     <div class="p+" flex-container="column" flex-align="space-between center">
