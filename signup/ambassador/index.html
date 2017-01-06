@@ -34,7 +34,27 @@
 <header class="signupHeader">
     <nav-header></nav-header>
 </header>
-<h1 class="text-center bg-primary">Signup as an Ambassador</h1>
+<div class="container post">
+    <div class="row">
+        <div class="col-md-6 post-title">
+            <h4><strong>Signup as an Ambassador</strong></h4></div>
+        <div class="col-md-6 col-md-offset-0 post-body">
+            <p>Interested in being a Maine Ambassador? Great, Maine
+                needs your help!</p>
+            <p>Ambassadors are Mainers that grab coffee, a beer or
+                even lunch with folks that have recently moved, on
+                vacation or a business trip in order to talk about
+                Maine and demonstrate what living here is all about.
+                Your job during the meet up is simply to give them a
+                warm Maine welcome.</p>
+            <p>All that we ask of Ambassadors is to accept at least
+                one meet up per month and if accepted, make time for
+                the meetup as soon after the introduction as possible.
+                That’s It!</p>
+        </div>
+    </div>
+</div>
+
 <form ng-controller="bodyControl as vm">
     <div class="p+" flex-container="row" flex-gutter="24" flex-column="16">
         <div flex-item="4"></div>
@@ -92,11 +112,20 @@
 
     <div class="p+" flex-container="row" flex-gutter="24" flex-column="16">
         <div flex-item="4"></div>
+        <div flex-item="4">
+            <lx-checkbox ng-model="vm.legalCheck"
+                         lx-color="blue"
+            >I have read, I understand, and I agree to PROPEL's
+                <a href="/signup/legal" target="_blank">terms of use</a>
+                for this application
+            </lx-checkbox>
         <lx-button
+                ng-disabled="!vm.legalCheck"
                 lx-type="raised"
                 ng-click="vm.test()">
             Submit
         </lx-button>
+        </div>
     </div>
 </form>
 

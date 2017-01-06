@@ -9,11 +9,10 @@ app.controller('bodyControl', function($scope, $http) {
             email : "",
             currentCompany : "",
             jobTitle : "",
-            industry : "", /* off list */
-            yearsInIndustry : null,
+            industry : "",
+            yearsInIndustry : "",
             linkedInUrl : "",
             facebookUrl : "",
-
             nearestCity : "",
 
             vacationer :
@@ -24,8 +23,21 @@ app.controller('bodyControl', function($scope, $http) {
                 }
         };
 
+    vm.legalCheck = false;
     vm.cities = cities;
     vm.industries = industries;
+    vm.locale = 'em';
+    vm.vacationerCheck = false;
+
+    vm.vacationerClick = function() {
+        vm.guest.vacationer =
+            {
+                startVacation: undefined,
+                endVacation: undefined,
+                visitingFrom : ""
+            };
+    };
+
     vm.test = function() {
         /*$http.post('database/add/guest', vm.guest)
          .then(function successCallback(response) {

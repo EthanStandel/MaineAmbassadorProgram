@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html ng-app="app" style="overflow-x: hidden;">
-<base href="/" />
+<base href="/"/>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ambassador Signup</title>
+    <title>Guest Signup</title>
     <link rel="stylesheet" href="bower_components/lumx/dist/lumx.css">
 
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
@@ -30,37 +30,49 @@
     <script src="components/navHeader/navHeader.js"></script>
 </head>
 
-<body >
+<body>
 <header class="signupHeader">
     <nav-header></nav-header>
 </header>
-<h1 class="text-center bg-primary">Signup as an Guest</h1>
+<div class="container post">
+    <div class="row">
+        <div class="col-md-6 post-title">
+            <h4><strong>Signup as a Guest</strong></h4></div>
+        <div class="col-md-6 col-md-offset-0 post-body">
+            <p>Interested in connecting with a Mainer? Did you just
+                move and trying to make some new connections? Are you
+                on vacation or a business trip and wondering what it
+                like to live in Maine or what it takes to get a job here?</p>
+            <p>Well, the Maine Ambassador Program can help. Just sign
+                up as a guest and a volunteer ambassador will be in
+                touch to coordinate a meet up!</p>
+        </div>
+    </div>
+</div>
+
 <form ng-controller="bodyControl as vm">
     <div class="p+" flex-container="row" flex-gutter="24" flex-column="16">
         <div flex-item="4"></div>
         <div flex-item="4">
             <lx-text-field lx-label="Name" lx-allow-clear="true" lx-icon="account">
-                <input type="text" ng-model="vm.ambassador.name">
+                <input type="text" ng-model="vm.guest.name">
             </lx-text-field>
             <lx-text-field lx-label="Email address" lx-allow-clear="true" lx-icon="email">
-                <input type="email" ng-model="vm.ambassador.email">
+                <input type="email" ng-model="vm.guest.email">
             </lx-text-field>
             <lx-text-field lx-label="Current Company" lx-allow-clear="true" lx-icon="city">
-                <input type="text" ng-model="vm.ambassador.currentCompany">
+                <input type="text" ng-model="vm.guest.currentCompany">
             </lx-text-field>
             <lx-text-field lx-label="Job Title" lx-allow-clear="true" lx-icon="clipboard-account">
-                <input type="text" ng-model="vm.ambassador.jobTitle">
+                <input type="text" ng-model="vm.guest.jobTitle">
             </lx-text-field>
             <lx-text-field lx-label="LinkedIn URL" lx-allow-clear="true" lx-icon="linkedin-box">
-                <input type="text" ng-model="vm.ambassador.linkedInUrl">
+                <input type="text" ng-model="vm.guest.linkedInUrl">
             </lx-text-field>
             <lx-text-field lx-label="Facebook URL" lx-allow-clear="true" lx-icon="facebook-box">
-                <input type="text" ng-model="vm.ambassador.facebookUrl">
+                <input type="text" ng-model="vm.guest.facebookUrl">
             </lx-text-field>
-        </div>
-
-        <div flex-item="4">
-            <lx-select ng-model="vm.ambassador.nearestCity"
+            <lx-select ng-model="vm.guest.nearestCity"
                        lx-allow-clear="true"
                        lx-choices="vm.cities"
                        lx-display-filter="true"
@@ -72,7 +84,10 @@
                     {{ $choice }}
                 </lx-select-choices>
             </lx-select>
-            <lx-select ng-model="vm.ambassador.industry"
+        </div>
+
+        <div flex-item="4">
+            <lx-select ng-model="vm.guest.industry"
                        lx-allow-clear="true"
                        lx-choices="vm.industries"
                        lx-display-filter="true"
@@ -85,18 +100,65 @@
                 </lx-select-choices>
             </lx-select>
             <lx-text-field lx-label="Years In Industry" lx-allow-clear="true" lx-icon="calendar-clock">
-                <input type="number" ng-model="vm.ambassador.yearsInIndustry">
+                <input type="number" ng-model="vm.guest.yearsInIndustry">
             </lx-text-field>
+            <lx-checkbox ng-model="vm.vacationerCheck"
+                         ng-click="vm.vacationerClick()"
+                         lx-color="blue"
+            >I will be on vacation when I am in Maine
+            </lx-checkbox>
+            <div ng-show="vm.vacationerCheck">
+                <lx-text-field lx-label="Where are you visiting From?" lx-allow-clear="true" lx-icon="account-location">
+                    <input type="text" ng-model="vm.guest.vacationer.visitingFrom">
+                </lx-text-field>
+                <li class="list-row list-row--has-separator">
+                    <div class="list-row__primary">
+                        <lx-icon lx-id="airplane-landing" lx-size="s" lx-color="grey" lx-type="flat"></lx-icon>
+                    </div>
+                    <lx-date-picker ng-model="vm.guest.vacationer.startVacation"
+                                    lx-input-format="LL"
+                                    lx-locale="{{ vm.locale }}"
+                                    lx-max-date="vm.guest.vacationer.endVacation">
+                        <lx-text-field lx-allow-clear="true" lx-label="Arriving in Maine">
+                            <input type="text" ng-model="vm.guest.vacationer.startVacation">
+                        </lx-text-field>
+                    </lx-date-picker>
+                </li>
+                <li class="list-row list-row--has-separator">
+                    <div class="list-row__primary">
+                        <lx-icon lx-id="airplane-takeoff" lx-size="s" lx-color="grey" lx-type="flat"></lx-icon>
+                    </div>
+                    <lx-date-picker ng-model="vm.guest.vacationer.endVacation"
+                                    lx-input-format="LL"
+                                    lx-locale="{{ vm.locale }}"
+                                    lx-min-date="vm.guest.vacationer.startVacation">
+                        <lx-text-field lx-allow-clear="true" lx-label="Departing from Maine">
+                            <input type="text" ng-model="vm.guest.vacationer.endVacation">
+                        </lx-text-field>
+                    </lx-date-picker>
+                </li>
+
+            </div>
+
         </div>
     </div>
 
     <div class="p+" flex-container="row" flex-gutter="24" flex-column="16">
         <div flex-item="4"></div>
-        <lx-button
-                lx-type="raised"
-                ng-click="vm.test()">
-            Submit
-        </lx-button>
+        <div flex-item="4">
+            <lx-checkbox ng-model="vm.legalCheck"
+                         lx-color="blue"
+            >I have read, I understand, and I agree to PROPEL's
+                <a href="/signup/legal" target="_blank">terms of use</a>
+                for this application
+            </lx-checkbox>
+            <lx-button
+                    ng-disabled="!vm.legalCheck"
+                    lx-type="raised"
+                    ng-click="vm.test()">
+                Submit
+            </lx-button>
+        </div>
     </div>
 </form>
 

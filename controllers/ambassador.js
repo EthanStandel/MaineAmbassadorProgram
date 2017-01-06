@@ -17,6 +17,7 @@ app.controller('bodyControl', function($scope, $http) {
 		"nearestCity" : undefined
 	};
 
+	vm.legalCheck = false;
 	vm.cities = cities;
 	vm.industries = industries;
     vm.test = function() {
