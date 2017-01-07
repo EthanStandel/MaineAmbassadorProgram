@@ -96,11 +96,12 @@
                     {{ $choice }}
                 </lx-select-choices>
             </lx-select>
-            <lx-select ng-model="vm.ambassador.industry"
+            <lx-select ng-model="vm.ambassador.industries"
                        lx-allow-clear="true"
                        lx-choices="vm.industries"
                        lx-display-filter="true"
-                       lx-label="Industry">
+                       lx-multiple="true"
+                       lx-label="Industries">
                 <lx-select-selected>
                     {{ $selected }}
                 </lx-select-selected>

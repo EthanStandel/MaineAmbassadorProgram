@@ -91,11 +91,12 @@
         </div>
 
         <div flex-item="4">
-            <lx-select ng-model="vm.guest.industry"
+            <lx-select ng-model="vm.guest.industries"
                        lx-allow-clear="true"
                        lx-choices="vm.industries"
                        lx-display-filter="true"
-                       lx-label="Industry">
+                       lx-label="Industries"
+                       lx-multiple="true">
                 <lx-select-selected>
                     {{ $selected }}
                 </lx-select-selected>

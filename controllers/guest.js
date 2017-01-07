@@ -9,7 +9,7 @@ app.controller('bodyControl', function($scope, $http) {
             email : "",
             currentCompany : "",
             jobTitle : "",
-            industry : "",
+            industries : [],
             yearsInIndustry : "",
             linkedInUrl : "",
             facebookUrl : "",
