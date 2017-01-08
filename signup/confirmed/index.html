@@ -14,11 +14,13 @@
     <link rel="stylesheet" href="assets/css/user.css">
 
     <script src="bower_components/angular/angular.js"></script>
-    <script>var app = angular.module('app',[]);</script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+    <script>var app = angular.module('app',['ngRoute']);</script>
     <script src="components/navHeader/navHeader.js"></script>
+    <script src="controllers/confirmed.js"></script>
 </head>
 
-<body>
+<body ng-controller="bodyControl as vm">
 <header class="contactHeader">
     <nav-header></nav-header>
 </header>
@@ -33,7 +35,7 @@
     </div>
 </div>
 <footer>
-    <h5>PROPEL Portland 2016</h5></footer>
+    <h5>POWERED BY PROPEL</h5></footer>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>

@@ -25,11 +25,9 @@
     <script src="bower_components/lumx/dist/lumx.js"></script>
     <!--Lumx requirements end-->
 
-    <!-- Data -->
-    <script src="data/cities.js"></script>
-    <script src="data/industries.js"></script>
-
-    <!-- Controllers -->
+    <!-- Angular -->
+    <script src="module/app.js"></script>
+    <script src="services/dataServices.js"></script>
     <script src="controllers/guest.js"></script>
     <script src="components/navHeader/navHeader.js"></script>
 </head>
@@ -82,10 +80,10 @@
                        lx-display-filter="true"
                        lx-label="Nearest City">
                 <lx-select-selected>
-                    {{ $selected }}
+                    {{ $selected.name }}
                 </lx-select-selected>
                 <lx-select-choices>
-                    {{ $choice }}
+                    {{ $choice.name }}
                 </lx-select-choices>
             </lx-select>
         </div>
@@ -98,10 +96,10 @@
                        lx-label="Industries"
                        lx-multiple="true">
                 <lx-select-selected>
-                    {{ $selected }}
+                    {{ $selected.description }}
                 </lx-select-selected>
                 <lx-select-choices>
-                    {{ $choice }}
+                    {{ $choice.description }}
                 </lx-select-choices>
             </lx-select>
             <lx-text-field lx-label="Years In Industry" lx-allow-clear="true" lx-icon="calendar-clock">
@@ -168,7 +166,7 @@
 </form>
 
 <footer>
-    <h5>PROPEL Portland 2016</h5></footer>
+    <h5>POWERED BY PROPEL</h5></footer>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
