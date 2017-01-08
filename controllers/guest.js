@@ -1,24 +1,19 @@
-app.controller('bodyControl', function($scope, $http, mapData) {
+app.controller('bodyControl', function($scope, $http, mapData, guest) {
     var vm = this;
 
     vm.guest =
         {
-            name : "",
-            email : "",
-            currentCompany : "",
-            jobTitle : "",
-            industries : [],
-            yearsInIndustry : "",
-            linkedInUrl : "",
-            facebookUrl : "",
-            nearestCity : "",
+            "name" : "",
+            "email" : "",
+            "currentCompany" : "",
+            "jobTitle" : "",
+            "industries" : [],
+            "yearsOfExperience" : null,
+            "linkedInUrl" : "",
+            "facebookUrl" : "",
+            "nearestCity" : "",
 
-            vacationer :
-                {
-                    startVacation: null,
-                    endVacation: null,
-                    visitingFrom : ""
-                }
+            "vacation" : null
         };
 
     vm.legalCheck = false;
@@ -30,21 +25,25 @@ app.controller('bodyControl', function($scope, $http, mapData) {
     vm.vacationerCheck = false;
 
     vm.vacationerClick = function() {
-        vm.guest.vacationer =
-            {
-                startVacation: undefined,
-                endVacation: undefined,
-                visitingFrom : ""
-            };
+        if(vm.vacationerCheck)
+            vm.guest.vacation =
+                {
+                    startDate: undefined,
+                    endDate: undefined,
+                    visitingFrom : ""
+                };
+        else
+            vm.guest.vacationer = null;
     };
 
-    vm.test = function() {
-        /*$http.post('database/add/guest', vm.guest)
-         .then(function successCallback(response) {
-
-         }, function errorCallback(response) {
-
-         });*/
-        alert(JSON.stringify(vm.guest));
+    vm.add = function() {
+        guest.add(vm.guest,
+            function(res) {
+                console.log(JSON.stringify(vm.guest));
+                top.location.assign('/signup/unconfirmed');
+            }, function(res) {
+                top.location.assign('/error');
+            }
+        );
     };
 });

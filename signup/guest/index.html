@@ -27,6 +27,7 @@
 
     <!-- Angular -->
     <script src="module/app.js"></script>
+    <script src="services/GuestService.js"></script>
     <script src="services/dataServices.js"></script>
     <script src="controllers/guest.js"></script>
     <script src="components/navHeader/navHeader.js"></script>
@@ -103,27 +104,27 @@
                 </lx-select-choices>
             </lx-select>
             <lx-text-field lx-label="Years In Industry" lx-allow-clear="true" lx-icon="calendar-clock">
-                <input type="number" ng-model="vm.guest.yearsInIndustry">
+                <input type="number" ng-model="vm.guest.yearsOfExperience">
             </lx-text-field>
-            <lx-checkbox ng-model="vm.vacationerCheck"
-                         ng-click="vm.vacationerClick()"
+            <lx-checkbox ng-model="vm.vacation.heck"
+                         ng-click="vm.vacation.lick()"
                          lx-color="blue"
             >I will be on vacation when I am in Maine
             </lx-checkbox>
-            <div ng-show="vm.vacationerCheck">
+            <div ng-show="vm.vacation.heck">
                 <lx-text-field lx-label="Where are you visiting From?" lx-allow-clear="true" lx-icon="account-location">
-                    <input type="text" ng-model="vm.guest.vacationer.visitingFrom">
+                    <input type="text" ng-model="vm.guest.vacation.visitingFrom">
                 </lx-text-field>
                 <li class="list-row list-row--has-separator">
                     <div class="list-row__primary">
                         <lx-icon lx-id="airplane-landing" lx-size="s" lx-color="grey" lx-type="flat"></lx-icon>
                     </div>
-                    <lx-date-picker ng-model="vm.guest.vacationer.startVacation"
+                    <lx-date-picker ng-model="vm.guest.vacation.startDate"
                                     lx-input-format="LL"
                                     lx-locale="{{ vm.locale }}"
-                                    lx-max-date="vm.guest.vacationer.endVacation">
+                                    lx-max-date="vm.guest.vacation.endDate">
                         <lx-text-field lx-allow-clear="true" lx-label="Arriving in Maine">
-                            <input type="text" ng-model="vm.guest.vacationer.startVacation">
+                            <input type="text" ng-model="vm.guest.vacation.startDate">
                         </lx-text-field>
                     </lx-date-picker>
                 </li>
@@ -131,12 +132,12 @@
                     <div class="list-row__primary">
                         <lx-icon lx-id="airplane-takeoff" lx-size="s" lx-color="grey" lx-type="flat"></lx-icon>
                     </div>
-                    <lx-date-picker ng-model="vm.guest.vacationer.endVacation"
+                    <lx-date-picker ng-model="vm.guest.vacation.endDate"
                                     lx-input-format="LL"
                                     lx-locale="{{ vm.locale }}"
-                                    lx-min-date="vm.guest.vacationer.startVacation">
+                                    lx-min-date="vm.guest.vacation.startDate">
                         <lx-text-field lx-allow-clear="true" lx-label="Departing from Maine">
-                            <input type="text" ng-model="vm.guest.vacationer.endVacation">
+                            <input type="text" ng-model="vm.guest.vacation.endDate">
                         </lx-text-field>
                     </lx-date-picker>
                 </li>
@@ -156,9 +157,10 @@
                 for this application
             </lx-checkbox>
             <lx-button
+                    type="submit"
                     ng-disabled="!vm.legalCheck"
                     lx-type="raised"
-                    ng-click="vm.test()">
+                    ng-click="vm.add()">
                 Submit
             </lx-button>
         </div>

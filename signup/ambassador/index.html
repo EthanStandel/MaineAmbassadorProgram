@@ -27,6 +27,7 @@
 
     <!-- Angular -->
     <script src="module/app.js"></script>
+    <script src="services/AmbassadorService.js"></script>
     <script src="services/dataServices.js"></script>
     <script src="controllers/ambassador.js"></script>
     <script src="components/navHeader/navHeader.js"></script>
@@ -108,7 +109,7 @@
                 </lx-select-choices>
             </lx-select>
             <lx-text-field lx-label="Years In Industry" lx-allow-clear="true" lx-icon="calendar-clock">
-                <input type="number" ng-model="vm.ambassador.yearsInIndustry">
+                <input type="number" ng-model="vm.ambassador.yearsOfExperience">
             </lx-text-field>
         </div>
     </div>
@@ -123,9 +124,10 @@
                 for this application
             </lx-checkbox>
         <lx-button
+                type="submit"
                 ng-disabled="!vm.legalCheck"
                 lx-type="raised"
-                ng-click="vm.test()">
+                ng-click="vm.add()">
             Submit
         </lx-button>
         </div>

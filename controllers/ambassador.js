@@ -1,4 +1,4 @@
-app.controller('bodyControl', function($scope, $http, mapData) {
+app.controller('bodyControl', function($scope, $http, mapData, ambassador) {
 	var vm = this;
 	
 	vm.ambassador =
@@ -8,26 +8,28 @@ app.controller('bodyControl', function($scope, $http, mapData) {
 		"currentCompany" : "",
 		"jobTitle" : "",
 		"industries" : [], /* off list */
-		"yearsInIndustry" : null,
+		"yearsOfExperience" : null,
 		"linkedInUrl" : "",
 		"facebookUrl" : "",
 
-		"nearestCity" : undefined
+		"nearestCity" : null
 	};
 
 	vm.legalCheck = false;
 	mapData.cities()
-		.then(function(res) {vm.cities = res.data;});
+		.then(function(res) {
+		    vm.cities = res.data;
+		});
 	mapData.industries()
 		.then(function(res) {vm.industries = res.data;});
 
-    vm.test = function() {
-        /*$http.post('database/add/ambassador', vm.ambassador)
-            .then(function successCallback(response) {
-
-            }, function errorCallback(response) {
-
-            });*/
-        alert(JSON.stringify(vm.ambassador));
+    vm.add = function() {
+        ambassador.add(vm.ambassador,
+		function(res) {
+        	top.location.assign('/signup/unconfirmed');
+		}, function(res) {
+                top.location.assign('/error');
+			}
+		);
     };
 });
