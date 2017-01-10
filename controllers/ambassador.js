@@ -16,6 +16,8 @@ app.controller('bodyControl', function($scope, $http, mapData, ambassador) {
 	};
 
 	vm.legalCheck = false;
+    vm.illegalSubmit = false;
+
 	mapData.cities()
 		.then(function(res) {
 		    vm.cities = res.data;
@@ -23,7 +25,13 @@ app.controller('bodyControl', function($scope, $http, mapData, ambassador) {
 	mapData.industries()
 		.then(function(res) {vm.industries = res.data;});
 
+	vm.validation = ambassador.validation;
+
     vm.add = function() {
+    	if(!ambassador.validate(vm.ambassador)) {
+    	    vm.illegalSubmit = true;
+    	    return;
+        }
         ambassador.add(vm.ambassador,
 		function(res) {
         	top.location.assign('/signup/unconfirmed');

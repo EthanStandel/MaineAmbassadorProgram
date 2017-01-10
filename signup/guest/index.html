@@ -57,29 +57,40 @@
     <div class="p+" flex-container="row" flex-gutter="24" flex-column="16">
         <div flex-item="4"></div>
         <div flex-item="4">
-            <lx-text-field lx-label="Name" lx-allow-clear="true" lx-icon="account">
+            <lx-text-field lx-label="Name*" lx-allow-clear="true" lx-icon="account"
+                           lx-error="!vm.validation.name(vm.guest) && vm.illegalSubmit"
+                           lx-valid="vm.validation.name(vm.guest)">
                 <input type="text" ng-model="vm.guest.name">
             </lx-text-field>
-            <lx-text-field lx-label="Email address" lx-allow-clear="true" lx-icon="email">
+            <lx-text-field lx-label="Email address*" lx-allow-clear="true" lx-icon="email"
+                           lx-error="!vm.validation.email(vm.guest) && vm.illegalSubmit"
+                           lx-valid="vm.validation.email(vm.guest)">
                 <input type="email" ng-model="vm.guest.email">
             </lx-text-field>
-            <lx-text-field lx-label="Current Company" lx-allow-clear="true" lx-icon="city">
+            <lx-text-field lx-label="Current Company" lx-allow-clear="true" lx-icon="city"
+                           lx-valid="vm.validation.currentCompany(vm.guest)">
                 <input type="text" ng-model="vm.guest.currentCompany">
             </lx-text-field>
-            <lx-text-field lx-label="Job Title" lx-allow-clear="true" lx-icon="clipboard-account">
+            <lx-text-field lx-label="Job Title*" lx-allow-clear="true" lx-icon="clipboard-account"
+                           lx-error="!vm.validation.jobTitle(vm.guest) && vm.illegalSubmit"
+                           lx-valid="vm.validation.jobTitle(vm.guest)">
                 <input type="text" ng-model="vm.guest.jobTitle">
             </lx-text-field>
-            <lx-text-field lx-label="LinkedIn URL" lx-allow-clear="true" lx-icon="linkedin-box">
+            <lx-text-field lx-label="LinkedIn URL" lx-allow-clear="true" lx-icon="linkedin-box"
+                           lx-valid="vm.validation.linkedInUrl(vm.guest)">
                 <input type="text" ng-model="vm.guest.linkedInUrl">
             </lx-text-field>
-            <lx-text-field lx-label="Facebook URL" lx-allow-clear="true" lx-icon="facebook-box">
+            <lx-text-field lx-label="Facebook URL" lx-allow-clear="true" lx-icon="facebook-box"
+                           lx-valid="vm.validation.facebookUrl(vm.guest)">
                 <input type="text" ng-model="vm.guest.facebookUrl">
             </lx-text-field>
             <lx-select ng-model="vm.guest.nearestCity"
                        lx-allow-clear="true"
                        lx-choices="vm.cities"
                        lx-display-filter="true"
-                       lx-label="Nearest City">
+                       lx-label="Nearest City*"
+                       lx-error="!vm.validation.nearestCity(vm.guest) && vm.illegalSubmit"
+                       lx-valid="vm.validation.nearestCity(vm.guest)">
                 <lx-select-selected>
                     {{ $selected.name }}
                 </lx-select-selected>
@@ -94,8 +105,10 @@
                        lx-allow-clear="true"
                        lx-choices="vm.industries"
                        lx-display-filter="true"
-                       lx-label="Industries"
-                       lx-multiple="true">
+                       lx-label="Industries*"
+                       lx-multiple="true"
+                       lx-error="!vm.validation.industries(vm.guest) && vm.illegalSubmit"
+                       lx-valid="vm.validation.industries(vm.guest)">
                 <lx-select-selected>
                     {{ $selected.description }}
                 </lx-select-selected>
@@ -103,16 +116,20 @@
                     {{ $choice.description }}
                 </lx-select-choices>
             </lx-select>
-            <lx-text-field lx-label="Years In Industry" lx-allow-clear="true" lx-icon="calendar-clock">
+            <lx-text-field lx-label="Years In Industry*" lx-allow-clear="true" lx-icon="calendar-clock"
+                           lx-error="!vm.validation.yearsOfExperience(vm.guest) && vm.illegalSubmit"
+                           lx-valid="vm.validation.yearsOfExperience(vm.guest)">
                 <input type="number" ng-model="vm.guest.yearsOfExperience">
             </lx-text-field>
-            <lx-checkbox ng-model="vm.vacation.heck"
-                         ng-click="vm.vacation.lick()"
+            <lx-checkbox ng-model="vm.vacationCheck"
+                         ng-click="vm.vacationClick()"
                          lx-color="blue"
             >I will be on vacation when I am in Maine
             </lx-checkbox>
-            <div ng-show="vm.vacation.heck">
-                <lx-text-field lx-label="Where are you visiting From?" lx-allow-clear="true" lx-icon="account-location">
+            <div ng-show="vm.vacationCheck">
+                <lx-text-field lx-label="Where are you visiting From?*" lx-allow-clear="true" lx-icon="account-location"
+                               lx-error="!vm.vacationValidation.visitingFrom(vm.guest.vacation) && vm.illegalSubmit && vm.vacationCheck && vm.illegalSubmitVacation"
+                               lx-valid="vm.vacationValidation.visitingFrom(vm.guest.vacation)">
                     <input type="text" ng-model="vm.guest.vacation.visitingFrom">
                 </lx-text-field>
                 <li class="list-row list-row--has-separator">
@@ -122,8 +139,11 @@
                     <lx-date-picker ng-model="vm.guest.vacation.startDate"
                                     lx-input-format="LL"
                                     lx-locale="{{ vm.locale }}"
-                                    lx-max-date="vm.guest.vacation.endDate">
-                        <lx-text-field lx-allow-clear="true" lx-label="Arriving in Maine">
+                                    lx-max-date="vm.guest.vacation.endDate"
+                    ng-click="vm.getData()">
+                        <lx-text-field lx-allow-clear="true" lx-label="Arriving in Maine*"
+                                       lx-error="!vm.vacationValidation.startDate(vm.guest.vacation) && vm.illegalSubmit && vm.vacationCheck && vm.illegalSubmitVacation"
+                                       lx-valid="vm.vacationValidation.startDate(vm.guest.vacation)">
                             <input type="text" ng-model="vm.guest.vacation.startDate">
                         </lx-text-field>
                     </lx-date-picker>
@@ -136,7 +156,9 @@
                                     lx-input-format="LL"
                                     lx-locale="{{ vm.locale }}"
                                     lx-min-date="vm.guest.vacation.startDate">
-                        <lx-text-field lx-allow-clear="true" lx-label="Departing from Maine">
+                        <lx-text-field lx-allow-clear="true" lx-label="Departing from Maine*"
+                                       lx-error="!vm.vacationValidation.endDate(vm.guest.vacation) && vm.illegalSubmit && vm.vacationCheck && vm.illegalSubmitVacation"
+                                       lx-valid="vm.vacationValidation.endDate(vm.guest.vacation)">
                             <input type="text" ng-model="vm.guest.vacation.endDate">
                         </lx-text-field>
                     </lx-date-picker>
@@ -151,7 +173,7 @@
         <div flex-item="4"></div>
         <div flex-item="4">
             <lx-checkbox ng-model="vm.legalCheck"
-                         lx-color="blue"
+                         lx-color="green"
             >I have read, I understand, and I agree to PROPEL's
                 <a href="/signup/legal" target="_blank">terms of use</a>
                 for this application

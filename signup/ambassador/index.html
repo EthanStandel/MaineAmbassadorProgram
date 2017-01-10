@@ -62,22 +62,31 @@
     <div class="p+" flex-container="row" flex-gutter="24" flex-column="16">
         <div flex-item="4"></div>
         <div flex-item="4">
-            <lx-text-field lx-label="Name" lx-allow-clear="true" lx-icon="account">
+            <lx-text-field lx-label="Name*" lx-allow-clear="true" lx-icon="account"
+                           lx-error="!vm.validation.name(vm.ambassador) && vm.illegalSubmit"
+                           lx-valid="vm.validation.name(vm.ambassador)">
                 <input type="text" ng-model="vm.ambassador.name">
             </lx-text-field>
-            <lx-text-field lx-label="Email address" lx-allow-clear="true" lx-icon="email">
+            <lx-text-field lx-label="Email address*" lx-allow-clear="true" lx-icon="email"
+                           lx-error="!vm.validation.email(vm.ambassador) && vm.illegalSubmit"
+                           lx-valid="vm.validation.email(vm.ambassador)">
                 <input type="email" ng-model="vm.ambassador.email">
             </lx-text-field>
-            <lx-text-field lx-label="Current Company" lx-allow-clear="true" lx-icon="city">
+            <lx-text-field lx-label="Current Company" lx-allow-clear="true" lx-icon="city"
+                           lx-valid="vm.validation.currentCompany(vm.ambassador)">
                 <input type="text" ng-model="vm.ambassador.currentCompany">
             </lx-text-field>
-            <lx-text-field lx-label="Job Title" lx-allow-clear="true" lx-icon="clipboard-account">
+            <lx-text-field lx-label="Job Title*" lx-allow-clear="true" lx-icon="clipboard-account"
+                           lx-error="!vm.validation.jobTitle(vm.ambassador) && vm.illegalSubmit"
+                           lx-valid="vm.validation.jobTitle(vm.ambassador)">
                 <input type="text" ng-model="vm.ambassador.jobTitle">
             </lx-text-field>
-            <lx-text-field lx-label="LinkedIn URL" lx-allow-clear="true" lx-icon="linkedin-box">
+            <lx-text-field lx-label="LinkedIn URL" lx-allow-clear="true" lx-icon="linkedin-box"
+                           lx-valid="vm.validation.linkedInUrl(vm.ambassador)">
                 <input type="text" ng-model="vm.ambassador.linkedInUrl">
             </lx-text-field>
-            <lx-text-field lx-label="Facebook URL" lx-allow-clear="true" lx-icon="facebook-box">
+            <lx-text-field lx-label="Facebook URL" lx-allow-clear="true" lx-icon="facebook-box"
+                           lx-valid="vm.validation.facebookUrl(vm.ambassador)">
                 <input type="text" ng-model="vm.ambassador.facebookUrl">
             </lx-text-field>
         </div>
@@ -87,7 +96,9 @@
                        lx-allow-clear="true"
                        lx-choices="vm.cities"
                        lx-display-filter="true"
-                       lx-label="Nearest City">
+                       lx-label="Nearest City*"
+                       lx-error="!vm.validation.nearestCity(vm.ambassador) && vm.illegalSubmit"
+                       lx-valid="vm.validation.nearestCity(vm.ambassador)">
                 <lx-select-selected>
                     {{ $selected.name }}
                 </lx-select-selected>
@@ -100,7 +111,9 @@
                        lx-choices="vm.industries"
                        lx-display-filter="true"
                        lx-multiple="true"
-                       lx-label="Industries">
+                       lx-label="Industries*"
+                       lx-error="!vm.validation.industries(vm.ambassador) && vm.illegalSubmit"
+                       lx-valid="vm.validation.industries(vm.ambassador)">
                 <lx-select-selected>
                     {{ $selected.description }}
                 </lx-select-selected>
@@ -108,7 +121,10 @@
                     {{ $choice.description }}
                 </lx-select-choices>
             </lx-select>
-            <lx-text-field lx-label="Years In Industry" lx-allow-clear="true" lx-icon="calendar-clock">
+            <lx-text-field lx-label="Years In Industry*" lx-allow-clear="true" lx-icon="calendar-clock"
+                           lx-error="!vm.validation.yearsOfExperience(vm.ambassador) && vm.illegalSubmit"
+                           lx-error="!vm.validation.yearsOfExperience(vm.ambassador) && vm.illegalSubmit"
+                           lx-valid="vm.validation.yearsOfExperience(vm.ambassador)">
                 <input type="number" ng-model="vm.ambassador.yearsOfExperience">
             </lx-text-field>
         </div>
@@ -118,7 +134,7 @@
         <div flex-item="4"></div>
         <div flex-item="4">
             <lx-checkbox ng-model="vm.legalCheck"
-                         lx-color="blue"
+                         lx-color="green"
             >I have read, I understand, and I agree to PROPEL's
                 <a href="/signup/legal" target="_blank">terms of use</a>
                 for this application
