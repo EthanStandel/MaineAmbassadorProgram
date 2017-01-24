@@ -16,59 +16,33 @@ app.service('guest', function($http) {
 
     this.validation = {
         name : function(guest) {
-            if(guest.name === null || guest.name === "")
-                return false;
-            else return true;
+            return validateField(guest.name);
         },
         email : function(guest) {
             return /^[0-9a-zA-Z]+([0-9a-zA-Z]*[-._+])*[0-9a-zA-Z]+@[0-9a-zA-Z]+([-.][0-9a-zA-Z]+)*([0-9a-zA-Z]*[.])[a-zA-Z]{2,6}$/
                 .test(guest.email);
         },
         jobTitle : function(guest) {
-            if(guest.jobTitle === null || guest.jobTitle === "")
-                return false;
-            else return true;
+            return validateField(guest.jobTitle);
         },
         nearestCity : function(guest) {
-            if(guest.nearestCity === null)
-                return false;
-            else if(guest.nearestCity === undefined)
-                return false;
-            else return true;
+            return validateField(guest.nearestCity);
         },
         industries : function(guest) {
-            if(guest.industries.length === 0)
-                return false;
-            else return true;
+            return guest.industries.length !== 0;
         },
         yearsOfExperience : function(guest) {
-            if(guest.yearsOfExperience === null)
-                return false;
-            else if(guest.yearsOfExperience < 1)
-                return false;
-            else return true;
+            return validateField(guest.yearsOfExperience) && guest.yearsOfExperience > 0;
         },
         /* Now unnecessary fields. */
         currentCompany : function(guest) {
-            if(guest.currentCompany === null)
-                return false;
-            else if(guest.currentCompany === "")
-                return false;
-            else return true;
+            return validateField(guest.currentCompany);
         },
         linkedInUrl : function(guest) {
-            if(guest.linkedInUrl === null)
-                return false;
-            else if(guest.linkedInUrl === "")
-                return false;
-            else return true;
+            return validateField(guest.linkedInUrl);
         },
         facebookUrl : function(guest) {
-            if(guest.facebookUrl === null)
-                return false;
-            else if(guest.facebookUrl === "")
-                return false;
-            else return true;
+            return validateField(guest.facebookUrl);
         }
     };
 
@@ -121,5 +95,9 @@ app.service('guest', function($http) {
             &&this.vacationValidation.endDate(vacation))
             return true;
         else return false;
+    }
+
+    function validateField(field) {
+        return field !== undefined && field !== null && field !== "";
     }
 });

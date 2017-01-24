@@ -11,59 +11,33 @@ app.service('ambassador', function ($http) {
 
     this.validation = {
         name : function(ambassador) {
-            if(ambassador.name === null || ambassador.name === "")
-                return false;
-            else return true;
+            return validateField(ambassador.name);
         },
         email : function(ambassador) {
             return /^[0-9a-zA-Z]+([0-9a-zA-Z]*[-._+])*[0-9a-zA-Z]+@[0-9a-zA-Z]+([-.][0-9a-zA-Z]+)*([0-9a-zA-Z]*[.])[a-zA-Z]{2,6}$/
                 .test(ambassador.email);
         },
         jobTitle : function(ambassador) {
-            if(ambassador.jobTitle === null || ambassador.jobTitle === "")
-                return false;
-            else return true;
+            return validateField(ambassador.jobTitle);
         },
         nearestCity : function(ambassador) {
-            if(ambassador.nearestCity === null)
-                return false;
-            else if(ambassador.nearestCity === undefined)
-                return false;
-            else return true;
+            return validateField(ambassador.nearestCity);
         },
         industries : function(ambassador) {
-            if(ambassador.industries.length === 0)
-                return false;
-            else return true;
+            return ambassador.industries.length !== 0;
         },
         yearsOfExperience : function(ambassador) {
-            if(ambassador.yearsOfExperience === null)
-                return false;
-            else if(ambassador.yearsOfExperience < 1)
-                return false;
-            else return true;
+            return validateField(ambassador.yearsOfExperience) && ambassador.yearsOfExperience > 0;
         },
         /* Now unnecessary fields. */
         currentCompany : function(ambassador) {
-            if(ambassador.currentCompany === null)
-                return false;
-            else if(ambassador.currentCompany === "")
-                return false;
-            else return true;
+            return validateField(ambassador.currentCompany);
         },
         linkedInUrl : function(ambassador) {
-            if(ambassador.linkedInUrl === null)
-                return false;
-            else if(ambassador.linkedInUrl === "")
-                return false;
-            else return true;
+            return validateField(ambassador.linkedInUrl);
         },
         facebookUrl : function(ambassador) {
-            if(ambassador.facebookUrl === null)
-                return false;
-            else if(ambassador.facebookUrl === "")
-                return false;
-            else return true;
+            return validateField(ambassador.facebookUrl);
         }
     };
 
@@ -78,4 +52,7 @@ app.service('ambassador', function ($http) {
         else return false;
     }
 
+    function validateField(field) {
+        return field !== undefined && field !== null && field !== "";
+    }
 });
