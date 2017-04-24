@@ -1,4 +1,4 @@
-app.service('guest', function($http) {
+app.service('guest', function($http,config) {
     this.add = function (guest, success, error) {
 
         for (x in guest.industries)
@@ -10,7 +10,7 @@ app.service('guest', function($http) {
             guest.vacation.endDate = guest.vacation.endDate.toString();
         }
 
-        return $http.post('http://api.maineambassadorprogram.org/guests'
+        return $http.post(config.apiUrl() +  '/guests'
             , guest).then(success, error);
     };
 

@@ -1,11 +1,11 @@
-app.service('ambassador', function ($http) {
+app.service('ambassador', function ($http,config) {
     this.add = function (ambassador, success, error) {
 
         for (x in ambassador.industries)
             delete ambassador.industries[x]["$$hashKey"];
         delete ambassador.nearestCity["$$hashKey"];
 
-        return $http.post('http://api.maineambassadorprogram.org/ambassadors'
+        return $http.post(config.apiUrl() + '/ambassadors'
             , ambassador).then(success, error);
     };
 

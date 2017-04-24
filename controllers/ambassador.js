@@ -17,6 +17,7 @@ app.controller('bodyControl', function($scope, $http, mapData, ambassador) {
 
 	vm.legalCheck = false;
     vm.illegalSubmit = false;
+	vm.errorMessage="";
 
 	mapData.cities()
 		.then(function(res) {
@@ -36,7 +37,7 @@ app.controller('bodyControl', function($scope, $http, mapData, ambassador) {
 		function(res) {
         	top.location.assign('/signup/unconfirmed');
 		}, function(res) {
-                top.location.assign('/error');
+				vm.errorMessage=res.data.error;
 			}
 		);
     };

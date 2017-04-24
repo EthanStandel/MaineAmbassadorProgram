@@ -1,4 +1,5 @@
-app.controller('bodyControl', function($http) {
+app.controller('bodyControl', function($http,config) {
+    
     var querySet = location.search;
     var queries = querySet.split("ambassador=");
     var user = "";
@@ -7,9 +8,15 @@ app.controller('bodyControl', function($http) {
     else if(queries[1] === "false")
         user = "guests";
 
+   
+
     $http
-        .get('http://api.maineambassadorprogram.org/' + user + '/verify'
-            + location.search)
+        .get(config.apiUrl()+ '/' + user + '/verify' + querySet)
         .then(function(res) {},
-            function(res) {top.location.assign('/error');});
+            function(res) {
+               top.location.assign('/error');
+            });
+
+
+    
 });

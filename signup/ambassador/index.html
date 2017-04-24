@@ -27,6 +27,7 @@
 
     <!-- Angular -->
     <script src="module/app.js"></script>
+     <script src="services/configService.js"></script>
     <script src="services/AmbassadorService.js"></script>
     <script src="services/dataServices.js"></script>
     <script src="controllers/ambassador.js"></script>
@@ -60,7 +61,9 @@
 
 <form ng-controller="bodyControl as vm">
     <div class="p+" flex-container="row" flex-gutter="24" flex-column="16">
-        <div flex-item="4"></div>
+        <div flex-item="4" class="alert alert-danger" ng-show="vm.errorMessage!=''">
+            {{vm.errorMessage}}
+        </div>
         <div flex-item="4">
             <lx-text-field lx-label="Name*" lx-allow-clear="true" lx-icon="account"
                            lx-error="!vm.validation.name(vm.ambassador) && vm.illegalSubmit"

@@ -25,7 +25,7 @@ app.controller('bodyControl', function($scope, $http, mapData, guest) {
     mapData.industries()
         .then(function(res) {vm.industries = res.data;});
     vm.locale = 'em';
-
+    vm.errorMessage="";
     vm.vacationCheck = false;
     vm.vacationClick = function() {
         vm.guest.vacation =
@@ -66,7 +66,7 @@ app.controller('bodyControl', function($scope, $http, mapData, guest) {
                 console.log(JSON.stringify(vm.guest));
                 top.location.assign('/signup/unconfirmed');
             }, function(res) {
-                top.location.assign('/error');
+                vm.errorMessage=res.data.error;
             }
         );
     };
