@@ -1,6 +1,7 @@
 app.controller('bodyControl', function($scope, $http, mapData, ambassador) {
 	var vm = this;
 	
+	
 	vm.ambassador =
 	{
 		"name" : "",
