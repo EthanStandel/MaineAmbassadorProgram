@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<base href="/" />
+
+<link rel="icon" href="assets/img/favicon.ico" type="image/x-icon"/>
+<link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon"/>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deactivate</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" href="assets/css/user.css">
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script>var app = angular.module('app',['ngRoute']);</script>
+    <script src="components/navHeader/navHeader.js"></script>
+    <script src="services/configService.js"></script> 
+    <script src="controllers/activate.js"></script>
+</head>
+
+<body ng-controller="bodyControl as vm">
+<header class="contactHeader">
+    <nav-header></nav-header>
+</header>
+<div class="container post">
+    <div class="row">
+        <div class="col-md-6 post-title">
+            <h4><strong>You have been activated!</strong></h4></div>
+        <div class="col-md-6 col-md-offset-0 post-body">
+            <p>Your account has been activated.</p>
+        </div>
+    </div>
+</div>
+<footer>
+    <h5>POWERED BY PROPEL</h5></footer>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html ng-app="app" style="overflow-x: hidden;">
+<base href="/" />
+
+<link rel="icon" href="assets/img/favicon.ico" type="image/x-icon"/>
+<link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon"/>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambassador Signup</title>
+    <link rel="stylesheet" href="bower_components/lumx/dist/lumx.css">
+
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" href="assets/css/user.css">
+
+    <!--Lumx requirements start-->
+    <!--link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700"-->
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/velocity/velocity.js"></script>
+    <script src="bower_components/moment/min/moment-with-locales.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/lumx/dist/lumx.js"></script>
+    <!--Lumx requirements end-->
+
+    <!-- Angular -->
+    <script src="module/app.js"></script>
+     <script src="services/configService.js"></script>
+    <script src="services/AmbassadorService.js"></script>
+    <script src="services/dataServices.js"></script>
+    <script src="controllers/ambassador.js"></script>
+    <script src="components/navHeader/navHeader.js"></script>
+</head>
+
+<body >
+<header class="signupHeader">
+    <nav-header></nav-header>
+</header>
+
+    <div class="row">
+        <div class="col-md-6 post-title">
+            <h4><strong>Activate/Deactivate account</strong></h4></div>
+        
+    </div>
+
+<form ng-controller="bodyControl as vm">
+    <div class="p+" flex-container="row" flex-gutter="24" flex-column="16" ng-hide="vm.confirmationSent" >
+        <div>
+            Please enter your email address to deactivate or reactivate your ambassador profile.
+        </div>
+        <div flex-item="4" class="alert alert-danger" ng-show="vm.errorMessage!=''">
+            {{vm.errorMessage}}
+        </div>
+        <div flex-item="4">
+            <lx-text-field lx-label="Email address*" lx-allow-clear="true" lx-icon="email">
+                <input type="email" ng-model="vm.activation.email">
+            </lx-text-field>
+            
+        </div>
+       
+   
+     <div class="p+" flex-container="row" flex-gutter="24" flex-column="16">
+          <lx-button
+                type="submit"
+                ng-disabled="vm.activation.email==''"
+                lx-type="raised"
+                ng-click="vm.toggleActive()">
+            Submit
+        </lx-button>
+     </div>   
+    </div>
+     <div class="p+" flex-container="row" flex-gutter="24" flex-column="16" ng-show="vm.confirmationSent" >
+         <span>
+             An activate/deactivate confirmation has been sent to your email.
+         </span>
+     </div>
+</form>
+
+<footer>
+    <h5>POWERED BY PROPEL</h5></footer>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

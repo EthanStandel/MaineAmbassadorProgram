@@ -9,6 +9,17 @@ app.service('ambassador', function ($http,config) {
             , ambassador).then(success, error);
     };
 
+    this.toggleActive = function(email,success,error){
+        $http
+        .get(config.apiUrl() +  '/ambassadors/requestactivate?email=' + email)
+        .then(function(res) {
+            success(res);
+        },
+            function(res) {
+                error(res);
+        });
+    };
+
     this.validation = {
         name : function(ambassador) {
             return validateField(ambassador.name);

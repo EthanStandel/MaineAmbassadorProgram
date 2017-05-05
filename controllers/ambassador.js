@@ -16,6 +16,11 @@ app.controller('bodyControl', function($scope, $http, mapData, ambassador) {
 		"nearestCity" : null
 	};
 
+	
+
+	vm.activation = {
+		email:""
+	};
 	vm.legalCheck = false;
     vm.illegalSubmit = false;
 	vm.errorMessage="";
@@ -42,4 +47,15 @@ app.controller('bodyControl', function($scope, $http, mapData, ambassador) {
 			}
 		);
     };
+
+	vm.confirmationSent = false;
+	vm.toggleActive = function(){
+		
+	   ambassador.toggleActive(vm.activation.email, function(res){
+		 vm.confirmationSent = true;
+	   },
+	   function(res){
+			vm.errorMessage = res.data.error;
+	   });		
+	};
 });

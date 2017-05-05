@@ -1,8 +1,8 @@
 app.service('config', function($http) {
 
     this.apiUrl = function () {
-        //return 'http://localhost:8080'
-        return 'http://api.maineambassadorprogram.org'
+        return 'http://localhost:8080'
+        //return 'http://api.maineambassadorprogram.org'
     };
 
     this.getQueryParam = function(param) {
