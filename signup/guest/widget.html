@@ -40,7 +40,7 @@
         <div class="p+" flex-container="row" flex-column="12">
             <div flex-item="12" style="text-align:center">
                 <p style="font-size:24px;font-weight:bold">
-                   Meet A Mainer!
+                    Meet A Mainer!
                 </p>
                 <p>
                     Did you just move here?  Are you on vacation? Are you considering a job? Let the Maine Ambassador Program introduce you to one of Maine’s leaders.
@@ -84,7 +84,7 @@
                     <input type="text" ng-model="vm.guest.currentCompany">
                 </lx-text-field>
 
-                
+
             </div>
             <div flex-item="6">
                 <lx-text-field lx-label="Email address*" lx-allow-clear="true"
@@ -124,9 +124,13 @@
         <div class="p+" flex-container="row" flex-column="12">
             <div flex-item="12" style="text-align:center">
                 <p>
+                    <div flex-item="4" class="alert alert-success" ng-show="vm.successMessage!=''">
+                        {{vm.successMessage}}
+                    </div>
                     <lx-button type="submit"
                                lx-type="raised"
-                               ng-click="vm.add()">
+                               ng-hide="vm.successMessage!=''"
+                               ng-click="vm.addViaWidget()">
                         Request Your Meeting!
                     </lx-button>
                 </p>
@@ -135,6 +139,13 @@
                     <br />
                     <span style="font-weight:bold"> An initiative for Maine <br /> Powered By:</span>
                 </p>
+            </div>
+        </div>
+
+        <div class="p+" flex-container="row" flex-column="12">
+            <div flex-item="12" style="text-align:center">
+                <img src="../../assets/img/genericlogo.jpg" width="100" style="display:inline-block" />
+                <img src="../../assets/img/propel_logo.jpg" width="150" style="display:inline-block" />
             </div>
         </div>
     </form>
