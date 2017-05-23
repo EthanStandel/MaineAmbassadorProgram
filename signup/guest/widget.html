@@ -30,6 +30,72 @@
     <script src="services/GuestService.js"></script>
     <script src="services/dataServices.js"></script>
     <script src="controllers/guest.js"></script>
+    <style>
+        body {
+            font-size: 11px !important;
+            line-height: 1.2 !important;
+        }
+
+        .watermark-logo {
+            /* the image you want to 'watermark' */
+            height: 110px; /* or whatever, equal to the image you want 'watermarked' */
+            /*width: 200px;*/ /* as above */
+            background-image: url(../../assets/img/propel_logo_wm.png);
+            background-size: 150px;
+            background-position-y:center;
+            background-position-x:center;
+            display: inline-block;
+            /*background-position: 0 0;*/
+            background-repeat: no-repeat;
+            position: relative;
+            /*opacity: 0.5;  Firefox, Chrome, Safari, Opera, IE >= 9 (preview)*/ 
+            /*filter: alpha(opacity=50);*/ /* for <= IE 8 */
+        }
+
+            .watermark-logo p {
+               color: black;
+            }
+
+        .widget-form .text-field, .lx-select {
+            padding-top: 1px !important;
+            padding-bottom: 6px !important;
+            top: 1px !important;
+        }
+
+        .widget-form input {
+            height: 27px !important;
+            font-size: 12px !important;
+        }
+
+        .widget-form label, .lx-select-label {
+            line-height: 0 !important;
+            top: 0 !important;
+            /* -webkit-transform: translateY(24px); */
+            -moz-transform: translateY(20px);
+            -ms-transform: translateY(20px);
+            -o-transform: translateY(20px);
+            transform: translateY(20px);
+            -webkit-transform-origin: bottom left;
+            -moz-transform-origin: bottom left;
+            -ms-transform-origin: bottom left;
+            -o-transform-origin: bottom left;
+            transform-origin: bottom left;
+        }
+
+        .top-bottom-zero {
+            padding-bottom: 0 !important;
+            padding-top: 0 !important;
+        }
+
+        .top-ten {
+            padding-bottom: 0 !important;
+            padding-top: 10px !important;
+        }
+
+        .btn--raised.btn--primary {
+                background-color: #5883aa !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -37,21 +103,31 @@
 
 
     <form ng-controller="bodyControl as vm">
-        <div class="p+" flex-container="row" flex-column="12">
-            <div flex-item="12" style="text-align:center">
-                <p style="font-size:24px;font-weight:bold">
+        <div class="p+ top-ten" flex-container="row" flex-column="12">
+            <div flex-item="12" style="text-align:center;">
+                <div class="watermark-logo">
+                    <p style="font-size:18px;font-weight:bold;margin: 13px 0 0 0">
+                        Meet A Mainer!
+                    </p>
+                    <p style="margin: 0 !important;font-size: 13px;">
+                        Did you just move here?  Are you on vacation? Are you considering a job? Let the Maine Ambassador Program introduce you to one of Maine’s leaders.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="p+ top-bottom-zero" flex-container="row" flex-gutter="0" flex-column="12" >
+            <!--<div flex-item="12" style="text-align:center">
+                <p style="font-size:20px;font-weight:bold">
                     Meet A Mainer!
                 </p>
                 <p>
                     Did you just move here?  Are you on vacation? Are you considering a job? Let the Maine Ambassador Program introduce you to one of Maine’s leaders.
                 </p>
-            </div>
-        </div>
-        <div class="p+" flex-container="row" flex-gutter="24" flex-column="12">
-            <div flex-item="4" class="alert alert-danger" ng-show="vm.errorMessage!=''">
+            </div>-->
+            <div flex-item="12" class="alert alert-danger" ng-show="vm.errorMessage!=''">
                 {{vm.errorMessage}}
             </div>
-            <div flex-item="6">
+            <div flex-item="6" class="widget-form">
                 <lx-text-field lx-label="Name*" lx-allow-clear="true"
                                lx-error="!vm.validation.name(vm.guest) && vm.illegalSubmit"
                                lx-valid="vm.validation.name(vm.guest)">
@@ -86,7 +162,7 @@
 
 
             </div>
-            <div flex-item="6">
+            <div flex-item="6" class="widget-form">
                 <lx-text-field lx-label="Email address*" lx-allow-clear="true"
                                lx-error="!vm.validation.email(vm.guest) && vm.illegalSubmit"
                                lx-valid="vm.validation.email(vm.guest)">
@@ -121,7 +197,7 @@
                 </lx-text-field>
             </div>
         </div>
-        <div class="p+" flex-container="row" flex-column="12">
+        <div class="p+ top-bottom-zero" flex-container="row" flex-column="12">
             <div flex-item="12" style="text-align:center">
                 <p>
                     <div flex-item="4" class="alert alert-success" ng-show="vm.successMessage!=''">
@@ -142,10 +218,9 @@
             </div>
         </div>
 
-        <div class="p+" flex-container="row" flex-column="12">
+        <div class="p+ top-bottom-zero" flex-container="row" flex-column="12">
             <div flex-item="12" style="text-align:center">
                 <img src="../../assets/img/genericlogo.jpg" width="100" style="display:inline-block" />
-                <img src="../../assets/img/propel_logo.jpg" width="150" style="display:inline-block" />
             </div>
         </div>
     </form>
